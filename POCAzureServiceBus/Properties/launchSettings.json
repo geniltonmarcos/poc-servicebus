@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "POCAzureServiceBus": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

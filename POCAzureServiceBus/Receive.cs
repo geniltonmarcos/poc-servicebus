@@ -1,11 +1,14 @@
 ﻿using Azure.Messaging.ServiceBus;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace POCAzureServiceBus
 {
     static class Receive
     {
+        private static AutoResetEvent waitHandle = new AutoResetEvent(false);
+
         static async Task MessageHandler(ProcessMessageEventArgs args)
         {
             string body = args.Message.Body.ToString();
@@ -16,7 +19,6 @@ namespace POCAzureServiceBus
             
             // complete the message. messages is deleted from the queue. 
             await args.CompleteMessageAsync(args.Message);
-
         }
 
         // handle any errors when receiving messages
@@ -41,13 +43,14 @@ namespace POCAzureServiceBus
                 // start processing 
                 await processor.StartProcessingAsync();
 
-                Console.WriteLine("press any key to end the processing");
-                Console.ReadKey();
+                Thread.Sleep(Timeout.Infinite);
+                //Console.WriteLine("press any key to end the processing");
+                //Console.ReadKey();
 
-                // stop processing 
-                Console.WriteLine("\nStopping the receiver...");
-                await processor.StopProcessingAsync();
-                Console.WriteLine("Stopped receiving messages");
+                //// stop processing 
+                //Console.WriteLine("\nStopping the receiver...");
+                //await processor.StopProcessingAsync();
+                //Console.WriteLine("Stopped receiving messages");
             }
         }
     }

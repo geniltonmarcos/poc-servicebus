@@ -7,7 +7,7 @@ namespace POCAzureServiceBus
         static async Task Main(string[] args)
         {
             // send a batch of messages to the queue
-            //await Send.SendMessageBatchAsync();
+            // await Send.SendMessageBatchAsync();
 
             // send a message to the queue
             //await Send.SendMessageAsync();
